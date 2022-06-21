@@ -32,14 +32,21 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		ArrayList<FBoardDto> fboardDtos = dao.fblistDao();
+		int listcount = dao.fblistcountDao();
 		
 		model.addAttribute("fblist", fboardDtos);
+		model.addAttribute("listcount", listcount);
 		
 		return "board_list";
 	}
 	
 	@RequestMapping(value = "/board_view")
-	public String board_view() {
+	public String board_view(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		String fbnum = request.getParameter("fbnum");
+		dao.fbhitDao(fbnum);		
 		
 		return "board_view";
 	}

@@ -15,6 +15,14 @@
 		SELECT * FROM freeboard ORDER BY fbnum DESC	
 	</select>
 	
+	<select id="fblistcountDao" resultType="int">
+		SELECT count(*) FROM freeboard	
+	</select>
+	
+	<update id="fbhitDao">
+		UPDATE freeboard SET fbhit = fbhit + 1 WHERE fbnum = #{param1}
+	</update>
+	
 
 	<!-- member SQL -->
 
