@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.gyojincompany.rubatohome.dao.IDao">
+	
+	<!-- freeboard SQL -->
+	<insert id="fbwriteDao">
+		INSERT INTO freeboard(fbnum, fbname, fbtitle, fbcontent, fbid, fbhit) VALUES (fb_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, 0)
+	</insert>
+	
+	<select id="fblistDao" resultType="com.gyojincompany.rubatohome.dto.FBoardDto">
+		SELECT * FROM freeboard ORDER BY fbnum DESC	
+	</select>
+	
+
+	<!-- member SQL -->
+
+
+</mapper>
