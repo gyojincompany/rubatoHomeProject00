@@ -16,7 +16,21 @@
 <header>
   <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
 <nav id="top_menu">
-  HOME | LOGIN | JOIN | NOTICE
+  HOME | 
+  
+  <%  
+	String sessionId = (String)session.getAttribute("id");    
+	if(sessionId == null) { 
+  %>  
+  LOGIN
+  <%
+	} else {
+  %>
+  <a href="logout">LOGOUT</a>	 
+  <% 
+  	} 
+  %>
+  | JOIN | NOTICE
 </nav>
 <nav id="main_menu">
   <ul>
@@ -32,17 +46,45 @@
   <article id="login_box">
     <img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
     <div id="input_button">
+    
+    <%    	   
+    	if(sessionId == null) {    
+    %>    
+    <form action="loginOk" method="post">
     <ul id="login_input">
-      <li><input type="text"></li>
-      <li><input type="password"></li>
+      <li><input type="text" name="mid"></li>
+      <li><input type="password" name="mpw"></li>
     </ul>
-    <img id="login_btn" src="${pageContext.request.contextPath}/resources/img/btn_login.gif">
-    </div> 
+    <input type="image" src="${pageContext.request.contextPath}/resources/img/btn_login.gif">
+    <!--  <img id="login_btn" src="${pageContext.request.contextPath}/resources/img/btn_login.gif"> -->
+    </form>
+    <%
+    	} else {
+    
+    	out.print(sessionId);
+    %>	
+    	님 로그인 중입니다.<br>
+    	<a href="logout">LOGOUT(로그아웃)</a>
+    <%
+    	}
+    %>
+    
+    </div>
+    <%    	   
+    	if(sessionId == null) {    
+    %>  
     <div class="clear"></div>
     <div id="join_search">
-      <img src="${pageContext.request.contextPath}/resources/img/btn_join.gif">
+      <img src="${pageContext.request.contextPath}/resources/img/btn_join.gif" href="">
       <img src="${pageContext.request.contextPath}/resources/img/btn_search.gif">
     </div>
+    <%
+    	} else {
+    %>	
+    <div></div>
+    <%
+    	}
+    %>    
   </article>
   <nav id="sub_menu">
     <ul>
@@ -96,32 +138,18 @@
         <td class="col4">2017-09-20</td>
         <td class="col5">15</td>
       </tr>
-      <tr>
-        <td class="col1">2</td>
-        <td class="col2">
-          <a href="board_view">까스통님의 선물인 보드카가 정말 독하네요!!!</a>
-        </td>
-        <td class="col3">루바토</td>
-        <td class="col4">2017-09-20</td>
-        <td class="col5">15</td>
-      </tr>	
-      <tr>
-        <td class="col1">3</td>
-        <td class="col2">
-          <a href="board_view">까스통님의 선물인 보드카가 정말 독하네요!!!</a>
-        </td>
-        <td class="col3">루바토</td>
-        <td class="col4">2017-09-20</td>
-        <td class="col5">15</td>
-      </tr>
+      
     </table>
+     
     <div id="buttons">
-      <div class="col1">◀ 이전 1 다음 ▶</div>
+    <!--  <div class="col1">◀ 이전 1 다음 ▶</div> -->
+      
       <div class="col2">
         <img src="${pageContext.request.contextPath}/resources/img/list.png"> 
         <a href="board_write"><img src="${pageContext.request.contextPath}/resources/img/write.png"></a>
       </div>
     </div>
+    
   </section> <!-- section main -->
   <div class="clear"></div>
 

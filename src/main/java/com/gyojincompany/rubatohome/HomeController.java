@@ -44,7 +44,7 @@ public class HomeController {
 		
 		model.addAttribute("memberId", request.getParameter("mid"));
 		
-		return "index";
+		return "redirect:index";
 	}
 	
 	@RequestMapping(value = "/logout")
