@@ -1,16 +1,21 @@
 package com.gyojincompany.rubatohome;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gyojincompany.rubatohome.dao.IDao;
 import com.gyojincompany.rubatohome.dto.FBoardDto;
@@ -98,8 +103,8 @@ public class HomeController {
 		return "logout";
 	}
 	
-	@RequestMapping(value = "/fbWrite")
-	public String fbWrite(HttpServletRequest request) {
+	@RequestMapping(value = "/fbWrite", method = RequestMethod.POST)
+	public String fbWrite(HttpServletRequest request, @RequestPart MultipartFile files) throws Exception {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -115,7 +120,29 @@ public class HomeController {
 			fbid = "GUEST";
 		}
 		
-		dao.fbwriteDao(fbname, fbtitle, fbcontent, fbid);
+		if(files.isEmpty()) { //사용자가 게시글 작성시 파일 첨부 여부 판단
+			//첨부된 파일이 없을 경우 사용자가 작성한 글만 DB에 삽입
+			dao.fbwriteDao(fbname, fbtitle, fbcontent, fbid);
+		} else { //사용자가 게시글에 파일을 첨부한 경우
+			dao.fbwriteDao(fbname, fbtitle, fbcontent, fbid);
+			
+			String oriFileName = files.getOriginalFilename();//업로드된 파일의 원래 이름
+			String oriFileNameExtension = FilenameUtils.getExtension(oriFileName).toLowerCase();//업로드된 파일의 확장자 추출(소문자로 변환)
+			File destinationFile;//java.io 패키지의 클래스 임포트
+			String destinationFileName;//실제 서버에 저장되는 파일의 이름 선언
+			String fileUrl = "D:/spirngBoot_workspace/rubatoHomeProject00/src/main/resources/static/uploadfiles/";
+			//첨부된 파일이 저장될 실제 폴더 경로
+			
+			do {
+				destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + oriFileNameExtension;
+				//영대소문자와 숫자가 혼합된 랜덤 32글자 문자열 생성 후 원본 파일의 확장자 연결하여 실제 저장될 파일의 이름 생성
+				destinationFile = new File(fileUrl+destinationFileName);
+			} while(destinationFile.exists());//같은 이름의 파일이 저장소에 존재할 경우 다시 파일이름 생성
+			
+			destinationFile.getParentFile().mkdir();
+			files.transferTo(destinationFile);
+			
+		}
 		
 		return "redirect:board_list";
 	}
