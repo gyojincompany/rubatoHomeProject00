@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head> 
@@ -112,9 +113,21 @@
     <span id="info">글쓴이 : ${fbview.fbname } | 조회 : ${fbview.fbhit } | 게시일 : ${fbview.fbdate }</span>
   </div>	
   <p id="view_content">
-   ${fbview.fbcontent }
+   ${fbview.fbcontent }  
+  </p>
   <hr>
-  </p>	
+  <br>
+  	<p id="file_info">
+  		※ 첨부파일 : 
+  		<a href="${pageContext.request.contextPath}/resources/uploadfiles/${fileInfo.fileName}">${fileInfo.fileOriName}</a>
+  	</p>
+  	<c:if test="${fileInfo.fileextension == 'jpg' or fileInfo.fileextension == 'png' or fileInfo.fileextension == 'gif' or fileInfo.fileextension == 'bmp'}">
+  	<p id="image_view">
+  		<img width="400" src="${pageContext.request.contextPath}/resources/uploadfiles/${fileInfo.fileName}">
+  	</p>	
+  	</c:if>
+  <br>
+  <hr>	
   <!-- 	
   <div id="comment_box">
     <img id="title_comment" src="${pageContext.request.contextPath}/resources/img/title_comment.gif">

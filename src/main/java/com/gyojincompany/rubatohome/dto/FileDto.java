@@ -7,7 +7,16 @@ public class FileDto {
 	private String fileName;//변경된 파일 이름
 	private String fileOriName;//원래 파일 이름
 	private String fileUrl;//파일의 저장 경로
+	private String fileextension;//파일의 확장자
 	
+	
+	
+	public String getFileextension() {
+		return fileextension;
+	}
+	public void setFileextension(String fileextension) {
+		this.fileextension = fileextension;
+	}
 	public int getFno() {
 		return fno;
 	}

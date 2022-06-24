@@ -74,7 +74,8 @@ public class HomeController {
 		String fbnum = request.getParameter("fbnum");
 		dao.fbhitDao(fbnum);//조회수 증가 함수
 		
-		model.addAttribute("fbview", dao.fbviewDao(fbnum));		
+		model.addAttribute("fbview", dao.fbviewDao(fbnum));
+		model.addAttribute("fileInfo", dao.fbfileInfoDao(fbnum));
 		
 		return "board_view";
 	}
@@ -141,6 +142,12 @@ public class HomeController {
 			
 			destinationFile.getParentFile().mkdir();
 			files.transferTo(destinationFile);
+			
+			ArrayList<FBoardDto> fbDtos = dao.fblistDao();
+			
+			int fbnum = fbDtos.get(0).getFbnum();//가져온 게시글 리스트 중에서 가장 최근글 불러온 후 getter로 fbnum 만 추출
+			
+			dao.fbfileInsertDao(fbnum, destinationFileName, oriFileName, fileUrl, oriFileNameExtension);
 			
 		}
 		
