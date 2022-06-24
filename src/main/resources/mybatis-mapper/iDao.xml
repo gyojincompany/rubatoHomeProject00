@@ -27,6 +27,22 @@
 		SELECT * FROM freeboard WHERE fbnum = #{param1}
 	</select>
 	
+	<select id="fbTitleSearchlistDao" resultType="com.gyojincompany.rubatohome.dto.FBoardDto">
+		SELECT * FROM freeboard WHERE fbtitle LIKE '%' || #{param1} || '%' ORDER BY fbnum DESC
+	</select>
+	
+	<select id="fbContentSearchlistDao" resultType="com.gyojincompany.rubatohome.dto.FBoardDto">
+		SELECT * FROM freeboard WHERE fbcontent LIKE '%' || #{param1} || '%' ORDER BY fbnum DESC
+	</select>
+	
+	<select id="fbWriterSearchlistDao" resultType="com.gyojincompany.rubatohome.dto.FBoardDto">
+		SELECT * FROM freeboard WHERE fbname LIKE '%' || #{param1} || '%' ORDER BY fbnum DESC
+	</select>
+	
+	<delete id="fbdeleteDao">
+		DELETE FROM freeboard WHERE fbnum = #{param1} 
+	</delete>
+	
 	
 
 	<!-- member SQL -->

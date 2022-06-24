@@ -123,7 +123,7 @@
   </div>
    -->
   <div id="buttons">
-    <a href="delete"><img src="${pageContext.request.contextPath}/resources/img/delete.png"></a>		
+    <a href="delete?fbnum=${fbview.fbnum }"><img src="${pageContext.request.contextPath}/resources/img/delete.png"></a>		
     <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
     <a href="board_write"><img src="${pageContext.request.contextPath}/resources/img/write.png"></a>			
   </div>

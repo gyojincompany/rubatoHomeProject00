@@ -122,5 +122,17 @@ public class HomeController {
 		return "redirect:board_list";
 	}
 	
+	@RequestMapping(value = "delete")
+	public String delete(HttpServletRequest request) {
+		
+		String fbnum = request.getParameter("fbnum");//삭제할 게시판 글 번호 가져오기
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.fbdeleteDao(fbnum);
+		
+		return "redirect:board_list";
+	}
+	
 	
 }

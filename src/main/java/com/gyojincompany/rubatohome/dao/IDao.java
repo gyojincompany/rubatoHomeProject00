@@ -15,6 +15,7 @@ public interface IDao {
 	public ArrayList<FBoardDto> fbTitleSearchlistDao(String keyword);//자유게시판 제목에서 검색한 결과 리스트 가져오기
 	public ArrayList<FBoardDto> fbContentSearchlistDao(String keyword);//자유게시판 내용에서 검색한 결과 리스트 가져오기
 	public ArrayList<FBoardDto> fbWriterSearchlistDao(String keyword);//자유게시판 글쓴이에서 검색한 결과 리스트 가져오기
+	public void fbdeleteDao(String fbnum);//자유게시판 글 삭제
 	
 	
 	//member 용 dao
