@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head> 
@@ -145,23 +147,25 @@
         <img class="image" src="${pageContext.request.contextPath}/resources/img/book_pen.gif">
         <ul class="list">
           <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
+            <div class="subject">${freeboard01.fbtitle }</div>
+            <div class="date">
+            	<c:out value="${fn:substring(freeboard01.fbdate,0,10) }"></c:out>
+            </div>
             <div class="clear"></div>		
           </li>
           <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
+            <div class="subject">${freeboard02.fbtitle }</div>
+            <div class="date">${freeboard02.fbdate }</div>
             <div class="clear"></div>	
           </li>		
           <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
+            <div class="subject">${freeboard03.fbtitle }</div>
+            <div class="date">${freeboard02.fbdate }</div>
             <div class="clear"></div>	
           </li>	
           <li>
-            <div class="subject">까스통님의 선물인 보드카...</div>
-            <div class="date">2017-09-20</div>
+            <div class="subject">${freeboard03.fbtitle }</div>
+            <div class="date">${freeboard04.fbdate }</div>
             <div class="clear"></div>	
           </li>								
         </ul>							

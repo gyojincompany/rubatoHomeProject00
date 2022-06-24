@@ -119,7 +119,7 @@
   <br>
   	<p id="file_info">
   		※ 첨부파일 : 
-  		<a href="${pageContext.request.contextPath}/resources/uploadfiles/${fileInfo.fileName}">${fileInfo.fileOriName}</a>
+  		<a id="file_href" href="${pageContext.request.contextPath}/resources/uploadfiles/${fileInfo.fileName}" style="text-decoration:none"><span class="file_info_text">${fileInfo.fileOriName}</span></span></a>
   	</p>
   	<c:if test="${fileInfo.fileextension == 'jpg' or fileInfo.fileextension == 'png' or fileInfo.fileextension == 'gif' or fileInfo.fileextension == 'bmp'}">
   	<p id="image_view">
