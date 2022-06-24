@@ -23,6 +23,11 @@
 		UPDATE freeboard SET fbhit = fbhit + 1 WHERE fbnum = #{param1}
 	</update>
 	
+	<select id="fbviewDao" resultType="com.gyojincompany.rubatohome.dto.FBoardDto">
+		SELECT * FROM freeboard WHERE fbnum = #{param1}
+	</select>
+	
+	
 
 	<!-- member SQL -->
 

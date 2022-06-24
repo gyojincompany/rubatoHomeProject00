@@ -46,7 +46,9 @@ public class HomeController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		String fbnum = request.getParameter("fbnum");
-		dao.fbhitDao(fbnum);		
+		dao.fbhitDao(fbnum);//조회수 증가 함수
+		
+		model.addAttribute("fbview", dao.fbviewDao(fbnum));		
 		
 		return "board_view";
 	}

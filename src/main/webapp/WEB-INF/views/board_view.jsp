@@ -108,15 +108,11 @@
   <img src="${pageContext.request.contextPath}/resources/img/comm.gif">
   <h2 id="board_title">자유 게시판 </h2>
   <div id="view_title_box"> 
-    <span>까스통님의 선물인 보드카가 정말 독하네요!!!</span>
-    <span id="info">루바토 | 조회 : 208 | 2016-04-28 (09:20)</span>
+    <span>${fbview.fbtitle }</span>
+    <span id="info">글쓴이 : ${fbview.fbname } | 조회 : ${fbview.fbhit } | 게시일 : ${fbview.fbdate }</span>
   </div>	
   <p id="view_content">
-    까스통님 고맙습니다. <br>
-    까스통님 고맙습니다. <br>
-    까스통님 고맙습니다. <br>
-    까스통님 고맙습니다. <br>
-    까스통님 고맙습니다. <br>
+   ${fbview.fbcontent }
   <hr>
   </p>	
   <!-- 	
