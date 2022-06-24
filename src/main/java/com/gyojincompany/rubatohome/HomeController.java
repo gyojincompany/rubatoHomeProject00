@@ -28,14 +28,35 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/board_list")
-	public String board_list(Model model) {
+	public String board_list(HttpServletRequest request, Model model) {
+		
+		String searchKeyword = request.getParameter("searchKeyword");
+		String searchOption = request.getParameter("searchOption");
+		
+		System.out.println(searchKeyword);
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		ArrayList<FBoardDto> fboardDtos = dao.fblistDao();
-		int listcount = dao.fblistcountDao();
+		
+		ArrayList<FBoardDto> fboardDtos = null;
+		
+		if(searchOption == null || searchKeyword == null) {
+			fboardDtos = dao.fblistDao();
+		} else {
+			if(searchOption.equals("title")) {
+				//제목에서 특정 키워드 검색한 결과
+				fboardDtos = dao.fbTitleSearchlistDao(searchKeyword);
+			} else if(searchOption.equals("content") ) {
+				//내용에서 특정 키워드 검색한 결과
+				fboardDtos = dao.fbContentSearchlistDao(searchKeyword);
+			} else {
+				//글쓴이에서 특정 키워드 검색한 결과
+				fboardDtos = dao.fbWriterSearchlistDao(searchKeyword);
+			}
+			
+		}
 		
 		model.addAttribute("fblist", fboardDtos);
-		model.addAttribute("listcount", listcount);
+		model.addAttribute("listcount", fboardDtos.size());
 		
 		return "board_list";
 	}
