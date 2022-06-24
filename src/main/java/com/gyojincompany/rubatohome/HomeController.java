@@ -117,8 +117,6 @@ public class HomeController {
 		
 		dao.fbwriteDao(fbname, fbtitle, fbcontent, fbid);
 		
-		
-		
 		return "redirect:board_list";
 	}
 	
