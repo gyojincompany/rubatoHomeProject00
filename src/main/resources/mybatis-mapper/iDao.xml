@@ -69,5 +69,9 @@
 	<insert id="rbwrite">
 		INSERT INTO replyboard(rbnum, rborifbnum, rbid, rbcontent) VALUES(rb_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
+	
+	<select id="rblist" resultType="com.gyojincompany.rubatohome.dto.ReplyDto">
+		SELECT * FROM replyboard WHERE rborifbnum = #{param1} ORDER BY rbnum ASC
+	</select>
 
 </mapper>

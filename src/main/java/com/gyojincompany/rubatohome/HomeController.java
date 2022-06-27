@@ -83,8 +83,9 @@ public class HomeController {
 		String fbnum = request.getParameter("fbnum");
 		dao.fbhitDao(fbnum);//조회수 증가 함수
 		
-		model.addAttribute("fbview", dao.fbviewDao(fbnum));
-		model.addAttribute("fileInfo", dao.fbfileInfoDao(fbnum));
+		model.addAttribute("fbview", dao.fbviewDao(fbnum));//게시글 내용
+		model.addAttribute("fileInfo", dao.fbfileInfoDao(fbnum));//첨부파일
+		model.addAttribute("rblist", dao.rblist(fbnum));//덧글 리스트
 		
 		return "board_view";
 	}
@@ -233,6 +234,7 @@ public class HomeController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		dao.rbwrite(rborifbnumInt, rbid, replycontent);
+		//request.setAttribute("fbnum", rborifbnumInt);
 		
 		return "redirect:board_list";
 	}

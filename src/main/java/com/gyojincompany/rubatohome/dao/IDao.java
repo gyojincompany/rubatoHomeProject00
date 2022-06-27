@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.gyojincompany.rubatohome.dto.FBoardDto;
 import com.gyojincompany.rubatohome.dto.FileDto;
+import com.gyojincompany.rubatohome.dto.ReplyDto;
 
 public interface IDao {
 	
@@ -29,6 +30,7 @@ public interface IDao {
 	
 	//reply 용 dao
 	public void rbwrite(int rborifbnum, String rbid, String rbcontent);
+	public ArrayList<ReplyDto> rblist(String fbnum);//덧글이 달린 원글의 게시판 번호를 인수로 호출
 	
 	
 	

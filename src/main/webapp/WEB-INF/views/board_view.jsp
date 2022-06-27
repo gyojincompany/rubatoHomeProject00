@@ -127,7 +127,19 @@
   	</p>	
   	</c:if>
   <br>
-  <hr>	
+  <hr>
+  <!-- 해당글의 덧글 리스트 출력 -->	
+  <table border="1" cellpadding="0" cellspacing="0" width="750">
+  <c:forEach items="${rblist}" var="rbdto">
+  	<tr>
+  		<td>아이디 : ${rbdto.rbid } <br>
+  		${rbdto.rbcontent } <br>
+  		${rbdto.rbdate }</td>
+  	</tr>
+	</c:forEach>
+  </table>
+  
+  <hr>
   <!-- 덧글입력 ui --> 	
   <div id="comment_box">
   	<form action="replyOk">
