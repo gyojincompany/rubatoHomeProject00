@@ -8,7 +8,7 @@
 	
 	<!-- freeboard SQL -->
 	<insert id="fbwriteDao">
-		INSERT INTO freeboard(fbnum, fbname, fbtitle, fbcontent, fbid, fbhit) VALUES (fb_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, 0)
+		INSERT INTO freeboard(fbnum, fbname, fbtitle, fbcontent, fbid, fbhit, fbreplycount) VALUES (fb_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, 0, 0)
 	</insert>
 	
 	<select id="fblistDao" resultType="com.gyojincompany.rubatohome.dto.FBoardDto">
@@ -73,5 +73,9 @@
 	<select id="rblist" resultType="com.gyojincompany.rubatohome.dto.ReplyDto">
 		SELECT * FROM replyboard WHERE rborifbnum = #{param1} ORDER BY rbnum ASC
 	</select>
+	
+	<update id="rbreplycount">
+		UPDATE freeboard SET fbreplycount = fbreplycount + 1 WHERE fbnum = #{param1}
+	</update>
 
 </mapper>

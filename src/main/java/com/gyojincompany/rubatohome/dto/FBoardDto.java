@@ -9,6 +9,7 @@ public class FBoardDto {
 	private String fbtitle;//게시판 제목
 	private String fbdate;//게시판에 글쓴 날짜
 	private String fbhit;//조회수
+	private String fbreplycount;//해당글의 덧글 개수
 	
 	public FBoardDto() {
 		super();
@@ -16,7 +17,7 @@ public class FBoardDto {
 	}
 
 	public FBoardDto(int fbnum, String fbid, String fbname, String fbcontent, String fbtitle, String fbdate,
-			String fbhit) {
+			String fbhit, String fbreplycount) {
 		super();
 		this.fbnum = fbnum;
 		this.fbid = fbid;
@@ -25,6 +26,7 @@ public class FBoardDto {
 		this.fbtitle = fbtitle;
 		this.fbdate = fbdate;
 		this.fbhit = fbhit;
+		this.fbreplycount = fbreplycount;
 	}
 
 	public int getFbnum() {
@@ -82,6 +84,15 @@ public class FBoardDto {
 	public void setFbhit(String fbhit) {
 		this.fbhit = fbhit;
 	}
+
+	public String getFbreplycount() {
+		return fbreplycount;
+	}
+
+	public void setFbreplycount(String fbreplycount) {
+		this.fbreplycount = fbreplycount;
+	}
+
 	
 	
 	

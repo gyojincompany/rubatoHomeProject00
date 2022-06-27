@@ -31,6 +31,7 @@ public interface IDao {
 	//reply 용 dao
 	public void rbwrite(int rborifbnum, String rbid, String rbcontent);
 	public ArrayList<ReplyDto> rblist(String fbnum);//덧글이 달린 원글의 게시판 번호를 인수로 호출
+	public void rbreplycount(String fbnum);//실행시 freeboard의 덧글수 필드(fbreplycount)의 값이 1씩 증가 
 	
 	
 	

@@ -107,7 +107,7 @@
 
 <section id="main">
   <img src="${pageContext.request.contextPath}/resources/img/comm.gif">
-  <h2 id="board_title">자유 게시판 </h2>
+  <h2 id="board_title">자유 게시판</h2>
   <div id="view_title_box"> 
     <span>${fbview.fbtitle }</span>
     <span id="info">글쓴이 : ${fbview.fbname } | 조회 : ${fbview.fbhit } | 게시일 : ${fbview.fbdate }</span>
@@ -132,10 +132,10 @@
   <table border="1" cellpadding="0" cellspacing="0" width="750">
   <c:forEach items="${rblist}" var="rbdto">
   	<tr>
-  		<td>아이디 : ${rbdto.rbid } <br>
-  		${rbdto.rbcontent } <br>
-  		${rbdto.rbdate }</td>
-  	</tr>
+  		<td align="center" height="60" width="100" style="background-color:#D6FFFF;font-size:15px;">${rbdto.rbid }</td>
+  		<td style="background-color:##F8FFFF;font-size:12px;">${rbdto.rbcontent }<br><br>
+  		${rbdto.rbdate }</div></td>
+  	</tr>  	
 	</c:forEach>
   </table>
   

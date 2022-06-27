@@ -143,7 +143,11 @@
       <tr>
         <td class="col1">${fbdto.fbnum }</td>
         <td class="col2">
-          <a href="board_view?fbnum=${fbdto.fbnum }">${fbdto.fbtitle }</a>
+          <a href="board_view?fbnum=${fbdto.fbnum }">${fbdto.fbtitle }
+           <c:if test="${fbdto.fbreplycount != 0}">
+          <b>[${fbdto.fbreplycount}]</b>
+          </c:if>
+          </a>
         </td>
         <td class="col3">${fbdto.fbname }</td>
         <td class="col4">
