@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head> 
@@ -10,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board_left.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board_view_main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board_write_main.css">
 </head>
 <body>
 <div id="wrap">
@@ -107,43 +106,34 @@
 
 <section id="main">
   <img src="${pageContext.request.contextPath}/resources/img/comm.gif">
-  <h2 id="board_title">자유 게시판 </h2>
-  <div id="view_title_box"> 
-    <span>${fbview.fbtitle }</span>
-    <span id="info">글쓴이 : ${fbview.fbname } | 조회 : ${fbview.fbhit } | 게시일 : ${fbview.fbdate }</span>
-  </div>	
-  <p id="view_content">
-   ${fbview.fbcontent }  
-  </p>
-  <hr>
-  <br>
-  	<p id="file_info">
-  		※ 첨부파일 : 
-  		<a id="file_href" href="${pageContext.request.contextPath}/resources/uploadfiles/${fileInfo.fileName}" style="text-decoration:none"><span class="file_info_text">${fileInfo.fileOriName}</span></span></a>
-  	</p>
-  	<c:if test="${fileInfo.fileextension == 'jpg' or fileInfo.fileextension == 'png' or fileInfo.fileextension == 'gif' or fileInfo.fileextension == 'bmp'}">
-  	<p id="image_view">
-  		<img width="400" src="${pageContext.request.contextPath}/resources/uploadfiles/${fileInfo.fileName}">
-  	</p>	
-  	</c:if>
-  <br>
-  <hr>	
-  <!-- 덧글입력 ui --> 	
-  <div id="comment_box">
-  	<form action="replyOk">
-  	<input type="hidden" name="fbnum" value="${fbview.fbnum }">
-    <img id="title_comment" src="${pageContext.request.contextPath}/resources/img/title_comment.gif">
-    <textarea name="replycontent"></textarea>
-    <!-- <img id="ok_ripple" src="${pageContext.request.contextPath}/resources/img/ok_ripple.gif">  -->
-    <input id="ok_ripple" type="image" src="${pageContext.request.contextPath}/resources/img/ok_ripple.gif">    
-    </form>
-  </div>
-   
+  <h2 id="board_title">회원 가입</h2>
+  <div id="write_title"><h2>회원 정보 입력</h2></div>
+  <form action="joinOk" method="post">
+  <table>  	
+    <tr id="name2">
+      <td class="col1">아이디</td>
+      <td class="col2"><input type="text" name="memberid"></td>
+    </tr>
+    <tr id="name2">
+      <td class="col1">비밀번호</td>
+      <td class="col2"><input type="password" name="memberpw"></td>
+    </tr>
+    <tr id="name2">
+      <td class="col1">이름</td>
+      <td class="col2"><input type="text" name="membername"></td>
+    </tr>
+    <tr id="name2">
+      <td class="col1">이메일</td>
+      <td class="col2"><input type="email" name="memberemail"></td>
+    </tr>
+  	
+  </table>
   <div id="buttons">
-    <a href="delete?fbnum=${fbview.fbnum }"><img src="${pageContext.request.contextPath}/resources/img/delete.png"></a>		
-    <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
-    <a href="board_write"><img src="${pageContext.request.contextPath}/resources/img/write.png"></a>			
+    <!-- <a href="#"><img src="${pageContext.request.contextPath}/resources/img/ok.png"></a> -->
+    <input type="image" src="${pageContext.request.contextPath}/resources/img/ok.png">
+    <!-- <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a> -->
   </div>
+  </form>
 </section> <!-- section main -->
 <div class="clear"></div>
 <footer>
@@ -159,6 +149,7 @@
     <li><img src="${pageContext.request.contextPath}/resources/img/twitter.gif"></li>
   </ul>
 </footer> <!-- footer -->
+
 </div> <!-- wrap -->
 </body>
 </html>

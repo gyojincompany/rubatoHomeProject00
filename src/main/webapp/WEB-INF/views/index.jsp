@@ -31,7 +31,7 @@
   <% 
   	} 
   %>
-  | JOIN | NOTICE
+  | <a href="join">JOIN</a> | NOTICE
 </nav>
 <nav id="main_menu">
   <ul>
@@ -137,7 +137,7 @@
         </ul>							
       </div>
     </article>
-    <article id="free"> 	<!—자유 게시판 -->
+    <article id="free"> 	<!-- 자유 게시판 -->
       <div class="latest_title">
         <img class="latest_img" src="${pageContext.request.contextPath}/resources/img/latest2.gif">
         <img class="more" src="${pageContext.request.contextPath}/resources/img/more.gif">
@@ -147,25 +147,75 @@
         <img class="image" src="${pageContext.request.contextPath}/resources/img/book_pen.gif">
         <ul class="list">
           <li>
-            <div class="subject">${freeboard01.fbtitle }</div>
+            <div class="subject">
+            <a href="board_view?fbnum=${freeboard01.fbnum}" style="text-decoration:none">
+            	<c:choose>
+            		<c:when test="${fn:length(freeboard01.fbtitle) > 14}">
+            			<c:out value="${fn:substring(freeboard01.fbtitle, 0 ,14)}" />...
+            		</c:when>
+            		<c:otherwise>
+            			<c:out value="${freeboard01.fbtitle}" />
+            		</c:otherwise>
+            	</c:choose>
+           	</a>            	
+            </div>
             <div class="date">
-            	<c:out value="${fn:substring(freeboard01.fbdate,0,10) }"></c:out>
+            	<c:out value="${fn:substring(freeboard01.fbdate,0,10)}"></c:out>
             </div>
             <div class="clear"></div>		
           </li>
           <li>
-            <div class="subject">${freeboard02.fbtitle }</div>
-            <div class="date">${freeboard02.fbdate }</div>
+            <div class="subject">
+            <a href="board_view?fbnum=${freeboard02.fbnum}" style="text-decoration:none">
+            	<c:choose>
+            		<c:when test="${fn:length(freeboard02.fbtitle) > 14}">
+            			<c:out value="${fn:substring(freeboard02.fbtitle, 0 ,14)}" />...
+            		</c:when>
+            		<c:otherwise>
+            			<c:out value="${freeboard02.fbtitle}" />
+            		</c:otherwise>
+            	</c:choose> 
+            	</a>           	
+            </div>
+            <div class="date">
+            	<c:out value="${fn:substring(freeboard02.fbdate,0,10)}"></c:out>
+            </div>
             <div class="clear"></div>	
           </li>		
           <li>
-            <div class="subject">${freeboard03.fbtitle }</div>
-            <div class="date">${freeboard02.fbdate }</div>
+           <div class="subject">
+           <a href="board_view?fbnum=${freeboard03.fbnum}" style="text-decoration:none">
+            	<c:choose>
+            		<c:when test="${fn:length(freeboard03.fbtitle) > 14}">
+            			<c:out value="${fn:substring(freeboard03.fbtitle, 0 ,14)}" />...
+            		</c:when>
+            		<c:otherwise>
+            			<c:out value="${freeboard03.fbtitle}" />
+            		</c:otherwise>
+            	</c:choose>            	
+            	</a>
+            </div>
+            <div class="date">
+            	<c:out value="${fn:substring(freeboard03.fbdate,0,10)}"></c:out>
+           	</div>
             <div class="clear"></div>	
           </li>	
           <li>
-            <div class="subject">${freeboard03.fbtitle }</div>
-            <div class="date">${freeboard04.fbdate }</div>
+            <div class="subject">
+            <a href="board_view?fbnum=${freeboard04.fbnum}" style="text-decoration:none">
+            	<c:choose>
+            		<c:when test="${fn:length(freeboard04.fbtitle) > 14}">
+            			<c:out value="${fn:substring(freeboard04.fbtitle, 0 ,14)}" />...
+            		</c:when>
+            		<c:otherwise>
+            			<c:out value="${freeboard04.fbtitle}" />
+            		</c:otherwise>
+            	</c:choose>            	
+            	</a>
+            </div>
+            <div class="date">
+            	<c:out value="${fn:substring(freeboard04.fbdate,0,10)}"></c:out>
+            </div>
             <div class="clear"></div>	
           </li>								
         </ul>							

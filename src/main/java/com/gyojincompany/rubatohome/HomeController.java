@@ -47,7 +47,7 @@ public class HomeController {
 		String searchKeyword = request.getParameter("searchKeyword");
 		String searchOption = request.getParameter("searchOption");
 		
-		System.out.println(searchKeyword);
+		//System.out.println(searchKeyword);
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -96,13 +96,23 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/loginOk", method = RequestMethod.POST)
-	public String joinOk(HttpServletRequest request, Model model) {
+	public String loginOk(HttpServletRequest request, Model model) {
 		
-		HttpSession session = request.getSession();
+		String mid = request.getParameter("mid");
+		String mpw = request.getParameter("mpw");
+				
+		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		session.setAttribute("id", request.getParameter("mid"));
+		int checkIdFlag = dao.checkIdDao(mid);//아이디 존재 여부 체크 1이 반환되면 존재, 0이면 부존재
+		int checkIdPwFlag = dao.checkIdPwDao(mid, mpw);//아이디와 비밀번호가 모두 일치하는 데이터 존재시 1이 반환
 		
-		model.addAttribute("memberId", request.getParameter("mid"));
+		if (checkIdPwFlag == 1) {
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("id", request.getParameter("mid"));
+			
+			model.addAttribute("memberId", request.getParameter("mid"));
+		}
 		
 		return "redirect:index";
 	}
@@ -174,6 +184,62 @@ public class HomeController {
 		
 		return "redirect:board_list";
 	}
+	
+	@RequestMapping(value = "join")
+	public String join() {
+		
+		return "member_join";
+	}
+	
+	@RequestMapping(value = "joinOk", method = RequestMethod.POST)
+	public String joinOk(HttpServletRequest request) {
+		
+		String mid = request.getParameter("memberid");
+		String mpw = request.getParameter("memberpw");
+		String mname = request.getParameter("membername");
+		String memail = request.getParameter("memberemail");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.memberjoinDao(mid, mpw, mname, memail);
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("id", mid);
+		session.setAttribute("name", mname);
+		
+		
+		return "redirect:index";
+	}
+	
+	@RequestMapping(value = "replyOk")
+	public String replyOk(HttpServletRequest request, Model model) {
+		
+		String replycontent = request.getParameter("replycontent");
+		String rborifbnum = request.getParameter("fbnum");
+		int rborifbnumInt = Integer.parseInt(rborifbnum);
+		
+		HttpSession session = request.getSession();		
+		String sessionId = (String)session.getAttribute("id");
+		
+		String rbid;
+		
+		if (sessionId == null) {
+			rbid = "Guest";
+		} else {
+			rbid = sessionId;
+		}
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.rbwrite(rborifbnumInt, rbid, replycontent);
+		
+		return "redirect:board_list";
+	}
+	
+	
+	
+	
 	
 	
 }

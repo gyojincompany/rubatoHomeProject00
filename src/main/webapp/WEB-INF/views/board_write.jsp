@@ -124,7 +124,8 @@
     </tr>	
     <tr id="upload">
       <td class="col1">업로드 파일</td>
-      <td class="col2"><input type="file" name="files" multiple="multiple"></td>
+      <td class="col2"><input type="file" name="files"></td>
+      
     </tr>
   	
   </table>

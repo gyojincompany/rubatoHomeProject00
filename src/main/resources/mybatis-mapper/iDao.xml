@@ -53,6 +53,21 @@
 	
 
 	<!-- member SQL -->
-
+	<insert id="memberjoinDao">
+		INSERT INTO member(mid, mpw, mname, memail) VALUES(#{param1}, #{param2}, #{param3}, #{param4})	
+	</insert>
+	
+	<select id="checkIdDao" resultType="int">
+		SELECT COUNT(*) FROM member WHERE mid=#{param1}
+	</select>
+	
+	<select id="checkIdPwDao" resultType="int">
+		SELECT COUNT(*) FROM member WHERE mid=#{param1} AND mpw=#{param2}
+	</select>
+	
+	<!-- reply SQL -->
+	<insert id="rbwrite">
+		INSERT INTO replyboard(rbnum, rborifbnum, rbid, rbcontent) VALUES(rb_seq.nextval, #{param1}, #{param2}, #{param3})
+	</insert>
 
 </mapper>

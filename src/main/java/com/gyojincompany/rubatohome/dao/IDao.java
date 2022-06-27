@@ -23,5 +23,15 @@ public interface IDao {
 	public FileDto fbfileInfoDao(String bno);//게시글 번호로 검색하여 해당 게시글에 첨부된 파일의 모든 정보 불러오기
 	
 	//member 용 dao
+	public void memberjoinDao(String mid, String mpw, String mname, String memail);//회원 가입 하기
+	public int checkIdDao(String mid);//회원 아이디 존재 여부 확인
+	public int checkIdPwDao(String mid, String mpw);//로그인 시 회원 아이디와 비번 일치여부 체크
+	
+	//reply 용 dao
+	public void rbwrite(int rborifbnum, String rbid, String rbcontent);
+	
+	
+	
+	
 	
 }
